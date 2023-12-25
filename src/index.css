@@ -8,8 +8,8 @@
 }
 
 @font-face {
-  font-family: 'VCR OSD Mono';
-  src: url(/assets/fonts/vcr_osd_mono.ttf);
+  font-family: 'Kroftsmann';
+  src: url(/assets/fonts/Kroftsmann.ttf);
 }
 
 .font-display {
@@ -17,11 +17,12 @@
 }
 
 .font-body {
-  font-family: 'VCR OSD Mono', 'monospace';
+  font-family: 'Kroftsmann', 'monospace';
 }
 
 .font-system {
-  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
 :root {
@@ -55,7 +56,7 @@ body {
 }
 
 .game-title {
-  background: linear-gradient(to bottom, #fec742, #dd7c42);
+  background: linear-gradient(to bottom, rgb(187, 39, 26), rgb(187, 39, 26));
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

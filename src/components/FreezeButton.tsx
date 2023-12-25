@@ -27,9 +27,8 @@ export default function FreezeButton() {
         onClick={flipSwitch}
         className="hidden lg:block"
         title="When freezing a world, the agents will take some time to stop what they are doing before they become frozen. "
-        imgUrl="/assets/star.svg"
       >
-        {frozen ? 'Unfreeze' : 'Freeze'}
+        {frozen ? 'Starten' : 'Pausieren'}
       </Button>
     </>
   );

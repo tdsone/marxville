@@ -56,7 +56,7 @@ export default function PlayerDetails({
   if (!playerId) {
     return (
       <div className="flex items-center h-full p-4 text-xl text-center">
-        Klicke auf einen Agenten auf der Karte, um die Chat-Historie zu sehen.
+        Klicke auf einen Kommunisten auf der Karte, um die Chat-Historie zu sehen.
       </div>
     );
   }
