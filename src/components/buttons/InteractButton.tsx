@@ -59,10 +59,10 @@ export default function InteractButton() {
   if (!isAuthenticated || game === undefined) {
     return (
       <SignInButton>
-        <button className="button text-white shadow-solid text-2xl pointer-events-auto">
+        <button className="text-2xl text-white pointer-events-auto button shadow-solid">
           <div className="inline-block bg-clay-700">
             <span>
-              <div className="inline-flex h-full items-center gap-4">
+              <div className="inline-flex items-center h-full gap-4">
                 <img className="w-4 h-4 sm:w-[30px] sm:h-[30px]" src={interactImg} />
                 Interact
               </div>

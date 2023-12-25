@@ -72,7 +72,7 @@ export default function Home() {
 
       <div className="relative flex flex-col justify-start w-full min-h-screen p-3 overflow-hidden shadow-2xl isolate lg:p-8">
         <h1 className="w-full mx-auto text-4xl font-bold leading-none tracking-wide text-left sm:text-8xl lg:text-9xl font-display game-title sm:text-center sm:w-auto">
-          Marxville
+          Marxville ☭
         </h1>
 
         <div className="max-w-xs mx-auto my-4 text-base leading-tight text-center text-white md:max-w-xl lg:max-w-none sm:text-xl md:text-2xl shadow-solid">
@@ -90,7 +90,6 @@ export default function Home() {
           <div className="flex flex-grow gap-4 pointer-events-none">
             <FreezeButton />
             <MusicButton />
-            <InteractButton />
             <Button imgUrl={helpImg} onClick={() => setHelpModalOpen(true)}>
               Info
             </Button>

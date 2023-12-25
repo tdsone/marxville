@@ -46,9 +46,7 @@ export async function rememberConversation(
   const llmMessages: LLMMessage[] = [
     {
       role: 'user',
-      content: `You are ${player.name}, and you just finished a conversation with ${otherPlayer.name}. I would
-      like you to summarize the conversation from ${player.name}'s perspective, using first-person pronouns like
-      "I," and add if you liked or disliked this interaction.`,
+      content: `Du bist ${player.name}, und hast gerade deine Konversation mit ${otherPlayer.name} beendet. Bitte fasse die Konversation aus der Perspektive von ${player.name} zusammen, indem du Pronomen wie "Ich" verwendest. Füge auch hinzu, ob dir die Konversation gerfallen hat oder nicht.`,
     },
   ];
   const authors = new Set<GameId<'players'>>();

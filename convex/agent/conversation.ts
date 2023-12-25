@@ -48,7 +48,7 @@ export async function startConversationMessage(
   prompt.push(...relatedMemoriesPrompt(memories));
   if (memoryWithOtherPlayer) {
     prompt.push(
-      `Integriere ein bestimmtes Detail oder Frage mit Bezug auf eine vorherige Konversation in deine Begrüßung.`,
+      `Integriere ein bestimmtes Detail oder Frage mit Bezug auf eine vorherige Konversation in deine Begrüßung. Stelle nur eine einzige Frage.`,
     );
   }
   prompt.push(`${player.name}:`);
