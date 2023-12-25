@@ -90,9 +90,6 @@ export default function Home() {
           <div className="flex flex-grow gap-4 pointer-events-none">
             <FreezeButton />
             <MusicButton />
-            <Button imgUrl={helpImg} onClick={() => setHelpModalOpen(true)}>
-              Info
-            </Button>
           </div>
         </footer>
         <ToastContainer position="bottom-right" autoClose={2000} closeOnClick theme="dark" />
