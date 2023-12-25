@@ -23,7 +23,7 @@ export async function chatCompletion(
 ) {
   checkForAPIKey();
 
-  body.model = body.model ?? 'gpt-3.5-turbo-16k';
+  body.model = body.model ?? 'gpt-3.5-turbo-0613';
   const openaiApiBase = process.env.OPENAI_API_BASE || 'https://api.openai.com';
   const stopWords = body.stop ? (typeof body.stop === 'string' ? [body.stop] : body.stop) : [];
   const {

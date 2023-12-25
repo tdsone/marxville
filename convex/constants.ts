@@ -73,3 +73,5 @@ export const ACTIVITIES = [
 ];
 
 export const ENGINE_ACTION_DURATION = 30000;
+
+export const GPT_MODEL = 'gpt-3.5-turbo-0613';

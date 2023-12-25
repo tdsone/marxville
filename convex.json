@@ -1,5 +1,7 @@
 {
   "node": {
-    "externalPackages": ["langchain"]
+    "externalPackages": [
+      "langchain"
+    ]
   }
 }

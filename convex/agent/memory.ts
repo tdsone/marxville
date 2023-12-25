@@ -8,6 +8,7 @@ import { GameId, agentId, conversationId, playerId } from '../aiTown/ids';
 import { SerializedPlayer } from '../aiTown/player';
 import { UseOllama, ollamaChatCompletion } from '../util/ollama';
 import { memoryFields } from './schema';
+import { GPT_MODEL } from '../constants';
 
 const completionFn = UseOllama ? ollamaChatCompletion : chatCompletion;
 
@@ -369,6 +370,7 @@ async function reflectOnMemories(
         content: prompt.join('\n'),
       },
     ],
+    model: GPT_MODEL,
   });
 
   try {

@@ -20,9 +20,7 @@ import PoweredByConvex from './components/PoweredByConvex.tsx';
 export default function Home() {
   const [helpModalOpen, setHelpModalOpen] = useState(false);
   return (
-    <main className="relative flex min-h-screen flex-col items-center justify-between font-body game-background">
-      <PoweredByConvex />
-
+    <main className="relative flex flex-col items-center justify-between min-h-screen font-body game-background">
       <ReactModal
         isOpen={helpModalOpen}
         onRequestClose={() => setHelpModalOpen(false)}
@@ -31,23 +29,23 @@ export default function Home() {
         ariaHideApp={false}
       >
         <div className="font-body">
-          <h1 className="text-center text-6xl font-bold font-display game-title">Help</h1>
+          <h1 className="text-6xl font-bold text-center font-display game-title">Help</h1>
           <p>
-            Welcome to AI town. AI town supports both anonymous <i>spectators</i> and logged in{' '}
-            <i>interactivity</i>.
+            Frohe Weihnachten und wilkommen in Marxville. In Marxville kannst du sowohl anonym
+            zuschauen als auch Teil des Geschehens werden!
           </p>
-          <h2 className="text-4xl mt-4">Spectating</h2>
+          <h2 className="mt-4 text-4xl">Zuschauen</h2>
           <p>
             Click and drag to move around the town, and scroll in and out to zoom. You can click on
             an individual character to view its chat history.
           </p>
-          <h2 className="text-4xl mt-4">Interactivity</h2>
+          <h2 className="mt-4 text-4xl">Teil des Geschehens werden</h2>
           <p>
             If you log in, you can join the simulation and directly talk to different agents! After
             logging in, click the "Interact" button, and your character will appear somewhere on the
             map with a highlighted circle underneath you.
           </p>
-          <p className="text-2xl mt-2">Controls:</p>
+          <p className="mt-2 text-2xl">Controls:</p>
           <p className="mt-4">Click to navigate around.</p>
           <p className="mt-4">
             To talk to an agent, click on them and then click "Start conversation," which will ask
@@ -62,7 +60,7 @@ export default function Home() {
           </p>
         </div>
       </ReactModal>
-      <div className="p-3 absolute top-0 right-0 z-10 text-2xl">
+      <div className="absolute top-0 right-0 z-10 p-3 text-2xl">
         <Authenticated>
           <UserButton afterSignOutUrl="/ai-town" />
         </Authenticated>
@@ -72,40 +70,31 @@ export default function Home() {
         </Unauthenticated>
       </div>
 
-      <div className="w-full min-h-screen relative isolate overflow-hidden p-3 lg:p-8 shadow-2xl flex flex-col justify-start">
-        <h1 className="mx-auto text-4xl sm:text-8xl lg:text-9xl font-bold font-display leading-none tracking-wide game-title w-full text-left sm:text-center sm:w-auto">
-          AI Town
+      <div className="relative flex flex-col justify-start w-full min-h-screen p-3 overflow-hidden shadow-2xl isolate lg:p-8">
+        <h1 className="w-full mx-auto text-4xl font-bold leading-none tracking-wide text-left sm:text-8xl lg:text-9xl font-display game-title sm:text-center sm:w-auto">
+          Marxville
         </h1>
 
-        <div className="max-w-xs md:max-w-xl lg:max-w-none mx-auto my-4 text-center text-base sm:text-xl md:text-2xl text-white leading-tight shadow-solid">
-          A virtual town where AI characters live, chat and socialize.
+        <div className="max-w-xs mx-auto my-4 text-base leading-tight text-center text-white md:max-w-xl lg:max-w-none sm:text-xl md:text-2xl shadow-solid">
+          Eine KI Stadt, die von virtuellen Kommunisten bewohnt wird.
           <Unauthenticated>
             <div className="my-1.5 sm:my-0" />
-            Log in to join the town
-            <br className="block sm:hidden" /> and the conversation!
+            Logge dich ein, um Teil der Stadt zu werden
+            <br className="block sm:hidden" /> und an der Konversation teilzunehmen.
           </Unauthenticated>
         </div>
 
         <Game />
 
-        <footer className="absolute bottom-0 left-0 w-full flex items-center mt-4 gap-3 p-6 flex-wrap pointer-events-none">
-          <div className="flex gap-4 flex-grow pointer-events-none">
+        <footer className="absolute bottom-0 left-0 flex flex-wrap items-center w-full gap-3 p-6 mt-4 pointer-events-none">
+          <div className="flex flex-grow gap-4 pointer-events-none">
             <FreezeButton />
             <MusicButton />
-            <Button href="https://github.com/a16z-infra/ai-town" imgUrl={starImg}>
-              Star
-            </Button>
             <InteractButton />
             <Button imgUrl={helpImg} onClick={() => setHelpModalOpen(true)}>
-              Help
+              Info
             </Button>
           </div>
-          <a href="https://a16z.com">
-            <img className="w-8 h-8 pointer-events-auto" src={a16zImg} alt="a16z" />
-          </a>
-          <a href="https://convex.dev">
-            <img className="w-20 h-8 pointer-events-auto" src={convexImg} alt="Convex" />
-          </a>
         </footer>
         <ToastContainer position="bottom-right" autoClose={2000} closeOnClick theme="dark" />
       </div>

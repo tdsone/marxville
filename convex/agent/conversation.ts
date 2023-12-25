@@ -7,7 +7,7 @@ import * as memory from './memory';
 import { api, internal } from '../_generated/api';
 import * as embeddingsCache from './embeddingsCache';
 import { GameId, conversationId, playerId } from '../aiTown/ids';
-import { NUM_MEMORIES_TO_SEARCH } from '../constants';
+import { GPT_MODEL, NUM_MEMORIES_TO_SEARCH } from '../constants';
 
 const selfInternal = internal.agent.conversation;
 const completionFn = UseOllama ? ollamaChatCompletion : chatCompletion;
@@ -28,10 +28,7 @@ export async function startConversationMessage(
       conversationId,
     },
   );
-  const embedding = await embeddingsCache.fetch(
-    ctx,
-    `What do you think about ${otherPlayer.name}?`,
-  );
+  const embedding = await embeddingsCache.fetch(ctx, `Was hälst du von ${otherPlayer.name}?`);
 
   const memories = await memory.searchMemories(
     ctx,
@@ -44,14 +41,14 @@ export async function startConversationMessage(
     (m) => m.data.type === 'conversation' && m.data.playerIds.includes(otherPlayerId),
   );
   const prompt = [
-    `You are ${player.name}, and you just started a conversation with ${otherPlayer.name}.`,
+    `Dein Name ist ${player.name}, und du hast gerade mit ${otherPlayer.name} eine Konversation begonnen.`,
   ];
   prompt.push(...agentPrompts(otherPlayer, agent, otherAgent ?? null));
   prompt.push(...previousConversationPrompt(otherPlayer, lastConversation));
   prompt.push(...relatedMemoriesPrompt(memories));
   if (memoryWithOtherPlayer) {
     prompt.push(
-      `Be sure to include some detail or question about a previous conversation in your greeting.`,
+      `Integriere ein bestimmtes Detail oder Frage mit Bezug auf eine vorherige Konversation in deine Begrüßung.`,
     );
   }
   prompt.push(`${player.name}:`);
@@ -63,6 +60,7 @@ export async function startConversationMessage(
         content: prompt.join('\n'),
       },
     ],
+    model: GPT_MODEL,
     max_tokens: 300,
     stream: true,
     stop: stopWords(otherPlayer.name, player.name),
@@ -88,20 +86,17 @@ export async function continueConversationMessage(
   );
   const now = Date.now();
   const started = new Date(conversation.created);
-  const embedding = await embeddingsCache.fetch(
-    ctx,
-    `What do you think about ${otherPlayer.name}?`,
-  );
+  const embedding = await embeddingsCache.fetch(ctx, `Was hälst du von ${otherPlayer.name}?`);
   const memories = await memory.searchMemories(ctx, player.id as GameId<'players'>, embedding, 3);
   const prompt = [
-    `You are ${player.name}, and you're currently in a conversation with ${otherPlayer.name}.`,
-    `The conversation started at ${started.toLocaleString()}. It's now ${now.toLocaleString()}.`,
+    `Du bist ${player.name}, und bist momentatn in einer Konversation mit ${otherPlayer.name}.`,
+    `Die Konversation hat um ${started.toLocaleString()} begonnen. Es ist ${now.toLocaleString()} Uhr.`,
   ];
   prompt.push(...agentPrompts(otherPlayer, agent, otherAgent ?? null));
   prompt.push(...relatedMemoriesPrompt(memories));
   prompt.push(
-    `Below is the current chat history between you and ${otherPlayer.name}.`,
-    `DO NOT greet them again. Do NOT use the word "Hey" too often. Your response should be brief and within 200 characters.`,
+    `Nachstehend ist die Konversation zwischen dir und ${otherPlayer.name}.`,
+    `Begrüße ihn NICHT noch einmal. Verwende das Wort Hey, NICHT zu häufig. Deine Anwort sollte kurz und maximal 2-3 Sätze lang sein.`,
   );
 
   const llmMessages: LLMMessage[] = [
@@ -123,6 +118,7 @@ export async function continueConversationMessage(
     messages: llmMessages,
     max_tokens: 300,
     stream: true,
+    model: GPT_MODEL,
     stop: stopWords(otherPlayer.name, player.name),
   });
   return content;
@@ -145,8 +141,8 @@ export async function leaveConversationMessage(
     },
   );
   const prompt = [
-    `You are ${player.name}, and you're currently in a conversation with ${otherPlayer.name}.`,
-    `You've decided to leave the question and would like to politely tell them you're leaving the conversation.`,
+    `Du bist ${player.name}, und momentan in einer Konversation mit ${otherPlayer.name}.`,
+    `Du hast dich entschieden die Konversation zu verlassen und willst freundlich vermitteln, dass du die Konversation beendest.`,
   ];
   prompt.push(...agentPrompts(otherPlayer, agent, otherAgent ?? null));
   prompt.push(
@@ -172,6 +168,7 @@ export async function leaveConversationMessage(
     messages: llmMessages,
     max_tokens: 300,
     stream: true,
+    model: GPT_MODEL,
     stop: stopWords(otherPlayer.name, player.name),
   });
   return content;
