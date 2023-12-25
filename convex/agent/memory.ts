@@ -252,9 +252,9 @@ async function calculateImportance(description: string) {
     messages: [
       {
         role: 'user',
-        content: `On the scale of 0 to 9, where 0 is purely mundane (e.g., brushing teeth, making bed) and 9 is extremely poignant (e.g., a break up, college acceptance), rate the likely poignancy of the following piece of memory.
-      Memory: ${description}
-      Answer on a scale of 0 to 9. Respond with number only, e.g. "5"`,
+        content: `Auf einer Skala von 0 bis 9, wo 0 vollkommen belanglos ist (z.B., Zähne putzen, Bett machen) und 9 sehr ergreifend ist (z.B., ein Break Up, Aufnahme an einer Uni), bewerte die folgende Erinnerung.
+      Erinnerung: ${description}
+      Antworte mit einer Zahl auf einer Skala von 0 bis 9. Antworte nur mit der Zahl, z.B. "5"`,
       },
     ],
     temperature: 0.0,
@@ -351,16 +351,16 @@ async function reflectOnMemories(
   }
   console.debug('sum of importance score = ', sumOfImportanceScore);
   console.debug('Reflecting...');
-  const prompt = ['[no prose]', '[Output only JSON]', `You are ${name}, statements about you:`];
+  const prompt = ['[no prose]', '[Output only JSON]', `Du bist ${name}, Aussagen über dich:`];
   memories.forEach((m, idx) => {
     prompt.push(`Statement ${idx}: ${m.description}`);
   });
-  prompt.push('What 3 high-level insights can you infer from the above statements?');
+  prompt.push('Was sind drei Erkenntnisse, die du aus den obigen Aussagen ableiten kannst?');
   prompt.push(
-    'Return in JSON format, where the key is a list of input statements that contributed to your insights and value is your insight. Make the response parseable by Typescript JSON.parse() function. DO NOT escape characters or include "\n" or white space in response.',
+    'Return JSON format, where the key is a list of input statements that contributed to your insights and value is your insight. Make the response parseable by Typescript JSON.parse() function. DO NOT escape characters or include "\n" or white space in response.',
   );
   prompt.push(
-    'Example: [{insight: "...", statementIds: [1,2]}, {insight: "...", statementIds: [1]}, ...]',
+    'Beispiel: [{insight: "...", statementIds: [1,2]}, {insight: "...", statementIds: [1]}, ...]',
   );
 
   const { content: reflection } = await chatCompletion({

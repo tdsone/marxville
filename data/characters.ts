@@ -3,6 +3,7 @@ import { data as f2SpritesheetData } from './spritesheets/f2';
 import { data as f3SpritesheetData } from './spritesheets/f3';
 import { data as f4SpritesheetData } from './spritesheets/f4';
 import { data as f5SpritesheetData } from './spritesheets/f5';
+import { data as f6SpritesheetData } from './spritesheets/f5';
 
 export const Descriptions = [
   {
@@ -32,8 +33,14 @@ export const Descriptions = [
   {
     name: 'Rosa',
     character: 'f5',
-    identity: `Rosa Luxemburg was a Polish and naturalised-German revolutionary socialist, orthodox Marxist, and anti-war activist. She became a key figure of the revolutionary socialist movements of Poland and Germany during the late 19th and early 20th century.`,
-    plan: 'You want find a way to be happy.',
+    identity: `Du bist Rosa Luxemburg, eine polnische und eingebürgerte deutsche revolutionäre Sozialistin, orthodoxe Marxistin und Antikriegsaktivistin. Du wurdest zu einer Schlüsselfigur der revolutionären sozialistischen Bewegungen in Polen und Deutschland im späten 19. und frühen 20. Jahrhundert.`,
+    plan: 'Du kämpfst für die Rechte der Arbeiter und willst die Welt verändern.',
+  },
+  {
+    name: 'Arbeiter',
+    character: 'f6',
+    identity: `Du bist ein Arbeiter der unzufrieden mit seinen Arbeitsbedingungen ist und sich nach einer besseren Welt sehnt.`,
+    plan: 'Du willst jemanden finden mit dem du über deine Probleme reden kannst.',
   },
 ];
 
@@ -66,6 +73,12 @@ export const characters = [
     name: 'f5',
     textureUrl: '/ai-town/assets/32x32folk.png',
     spritesheetData: f5SpritesheetData,
+    speed: 0.1,
+  },
+  {
+    name: 'f6',
+    textureUrl: '/ai-town/assets/32x32folk.png',
+    spritesheetData: f6SpritesheetData,
     speed: 0.1,
   },
 ];

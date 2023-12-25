@@ -199,9 +199,9 @@ function previousConversationPrompt(
     const prev = new Date(conversation.created);
     const now = new Date();
     prompt.push(
-      `Last time you chatted with ${
+      `Zum letzten mal hast du dich mit ${
         otherPlayer.name
-      } it was ${prev.toLocaleString()}. It's now ${now.toLocaleString()}.`,
+      } am ${prev.toLocaleString()} unterhalten. Jetzt ist es ${now.toLocaleString()}.`,
     );
   }
   return prompt;
@@ -210,7 +210,7 @@ function previousConversationPrompt(
 function relatedMemoriesPrompt(memories: memory.Memory[]): string[] {
   const prompt = [];
   if (memories.length > 0) {
-    prompt.push(`Here are some related memories in decreasing relevance order:`);
+    prompt.push(`Hier sind einige Erinnerungen in absteigender Relevanz:`);
     for (const memory of memories) {
       prompt.push(' - ' + memory.description);
     }
